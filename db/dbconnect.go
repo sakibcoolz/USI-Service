@@ -28,6 +28,8 @@ func Connect(config config.IConfig, log *zap.Logger) (db *gorm.DB, err error) {
 		log.Error("Error while connecting to database", zap.Error(err))
 	}
 
+	log.Info("Database connected")
+
 	return db, err
 }
 

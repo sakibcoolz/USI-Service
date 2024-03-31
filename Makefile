@@ -11,3 +11,6 @@ run:
 	SERVICE_HOST=$(localhost) \
 	SERVICE_PORT=$(port) \
 	$(GORUN) cmd/main.go
+
+docker-image:
+	make -C docker docker-image

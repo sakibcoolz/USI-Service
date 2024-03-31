@@ -1,0 +1,21 @@
+version: '3'
+services:
+  usi-service:
+    image: ${imagename}
+    hostname: ${domain}.${host}
+    container_name: ${domain}.${host}
+    ports:
+      - ${port}:${port}
+    environment:
+      - DB_NAME=${database}
+      - DB_SCHEME=${database}
+      - DB_HOST=${dbdomain}.${host} 
+      - DB_PORT=${dbport}
+      - DB_USERNAME=${dbuser}
+      - DB_PASSWORD=${dbpassword}
+      - SERVICE_HOST=${domain}.${host}
+      - SERVICE_PORT=${port}
+    tty: true
+networks:
+  backend:
+    driver: bridge
