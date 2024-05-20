@@ -3,6 +3,7 @@ package domain
 import (
 	"USI-Service/model/dbmodel"
 
+	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 )
@@ -10,6 +11,7 @@ import (
 type IDomain interface {
 	CreateUser(register *dbmodel.RegisterUser) error
 	Login(username string, password string) (dbmodel.RegisterUser, error)
+	UserDetails(ctx *gin.Context, username string) (dbmodel.RegisterUser, error)
 }
 
 type Domain struct {

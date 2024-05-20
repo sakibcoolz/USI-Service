@@ -11,6 +11,7 @@ import (
 type IController interface {
 	Register(ctx *gin.Context)
 	Login(ctx *gin.Context)
+	UserDetails(ctx *gin.Context)
 }
 
 type Controller struct {

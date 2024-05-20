@@ -5,6 +5,7 @@ import (
 	"USI-Service/utils/zerrors"
 	"USI-Service/utils/zerrors/apperrors"
 
+	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )
 
@@ -27,4 +28,15 @@ func (d *Domain) Login(username string, password string) (dbmodel.RegisterUser, 
 	}
 
 	return user, nil
+}
+
+func (d *Domain) UserDetails(ctx *gin.Context, username string) (dbmodel.RegisterUser, error) {
+	var register dbmodel.RegisterUser
+
+	if err := d.db.Where("username = ?", username).First(&register).Error; err != nil {
+		d.log.Error("Failed to login", zap.Error(err))
+
+		return register, zerrors.Errors(apperrors.DatabaseError, err)
+	}
+	return register, nil
 }

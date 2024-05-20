@@ -84,6 +84,8 @@ func Server(config config.IConfig, log *zap.Logger) {
 
 	apiAuthRouter.POST("/login", controller.Login)
 
+	apiAuthRouter.GET("/userdeatils/:user", controller.UserDetails)
+
 	if err := router.Run(config.GetService().Host + ":" + config.GetService().Port); err != nil {
 		log.Fatal("Error while starting server", zap.Error(err))
 	}
